@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - binhpv-webapp-01
+name: Build and deploy Python app to Azure Web App - simple-flask-webapp
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
-          python-version: '3.8'
+          python-version: '3.11'
 
       - name: Create and start virtual environment
         run: |
@@ -28,7 +28,7 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install --upgrade pip jinja2 --upgrade flask --upgrade 
+        run: pip install Flask --upgrade  jinja2 --upgrade
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
@@ -58,6 +58,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'binhpv-webapp-01'
+          app-name: 'simple-flask-webapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5FB10AF1AAB3423B9001B40A9225ED09 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_609DD66FBF0D44CE9936A6775A72C7C8 }}
